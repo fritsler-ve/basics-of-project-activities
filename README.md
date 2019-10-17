@@ -1,1 +1,2 @@
 # ZALOOOOOOOOPA
+Spravedlivo
