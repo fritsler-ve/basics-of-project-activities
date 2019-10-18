@@ -2,6 +2,7 @@
 using Challenge.DataContracts;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ConsoleApp
 {
@@ -9,6 +10,70 @@ namespace ConsoleApp
     {
         // ХУЛИ СМОТРИШЬ БЛЯДЬ!?
 
+        public static bool IsZero(double number)
+        {
+            return System.Math.Abs(number) <= 10e-6;
+        }
+        public static string SolvePolynom(double first, double second, double third)
+        {
+            if (IsZero(first))
+            {
+                if (IsZero(second))
+                {
+                    if (IsZero(third))
+                        return "1";
+                    return "no roots";
+                }
+                else
+                {
+                    return (-third) / second + "";
+                }
+            }
+            else
+            {
+                var discriminant = second * second - 4 * first * third;
+                if (discriminant < 0)
+                {
+                    return "no roots";
+                }
+                else
+                {
+                    return (System.Math.Sqrt(discriminant) - second) / (2 * first) + "";
+                }
+            }
+        }
+        static string Parser(string text)
+        {
+            var coefs = new double[3];
+            var shit = text.Split('+');
+
+            foreach (var s in shit)
+            {
+                var power = 2;
+                var number = new StringBuilder();
+                for (int i = 0; i < s.Length; i++)
+                {
+                    if (char.IsLetter(s[i]))
+                    {
+                        if (i == s.Length || s[i + 1] != '^')
+                            power = 1;
+                        else power = 0;
+                        break;
+                    }
+
+                    if (char.IsDigit(s[i]) || s[i] == '.' || s[i] == '-')
+                    {
+                        number.Append(s[i]);
+                    }
+                }
+                var numberStr = number.ToString();
+
+                if (string.IsNullOrEmpty(numberStr)) coefs[power] = 1;
+                else if (numberStr == "-") coefs[power] = -1;
+                else coefs[power] = double.Parse(numberStr, System.Globalization.CultureInfo.InvariantCulture);
+            }
+            return SolvePolynom(coefs[0], coefs[1], coefs[2]).Replace(',', '.');
+        }
 
         static void Main(string[] args)
         {
@@ -17,6 +82,9 @@ namespace ConsoleApp
 
             Console.WriteLine(test);
             */
+            var test = Parser("1.6*x^2 + 4.3*x + 1.6");
+            Console.WriteLine(test);
+            /*
             const string teamSecret = "jSVy9hRtt7bpflchqLGSc3l0iEgaRtp";
             var challengeClient = new ChallengeClient(teamSecret);
 
@@ -46,7 +114,7 @@ namespace ConsoleApp
             Console.WriteLine("----------------");
             Console.WriteLine();
 
-            const string type = "determinant";
+            const string type = "polynomial-root";
 
             while (true)
             {
@@ -61,7 +129,7 @@ namespace ConsoleApp
                 Console.WriteLine("----------------");
                 Console.WriteLine();
 
-                string answer = SolveDeterminant.GetAnswer(newTask.Question) + "";
+                string answer = Parser(newTask.Question) + "";
 
                 Console.WriteLine($"Нажми ВВОД, чтобы ответить на полученную задачу самым правильным ответом: {answer}");
                 Console.ReadLine();
@@ -70,17 +138,18 @@ namespace ConsoleApp
                 Console.WriteLine($"  Новое задание, статус {updatedTask.Status}");
                 Console.WriteLine($"  Формулировка:  {updatedTask.UserHint}");
                 Console.WriteLine($"                 {updatedTask.Question}");
-                updatedTask.TeamAnswer = SolveDeterminant.GetAnswer(updatedTask.Question) + "";
-                Console.WriteLine($"  Ответ команды: {SolveDeterminant.GetAnswer(updatedTask.Question)}");
+                updatedTask.TeamAnswer = Parser(updatedTask.Question) + "";
+                Console.WriteLine($"  Ответ команды: {Parser(updatedTask.Question)}");
                 Console.WriteLine();
                 if (updatedTask.Status == TaskStatus.Success)
                     Console.WriteLine($"Ура! Ответ угадан!");
                 else if (updatedTask.Status == TaskStatus.Failed)
                     Console.WriteLine($"Похоже ответ не подошел и задачу больше сдать нельзя...");
                 Console.WriteLine();
+                Console.ReadLine();
 
             }
-
+            */
             Console.WriteLine("----------------");
             Console.WriteLine();
 
