@@ -12,7 +12,11 @@ namespace ConsoleApp
 
         static void Main(string[] args)
         {
+            /*
+            var test = SolveDeterminant.GetAnswer("-3 & 10 & -4 // -17 & -10 & -4 // 2 & 9 & -7");
+
             Console.WriteLine(test);
+            */
             const string teamSecret = "jSVy9hRtt7bpflchqLGSc3l0iEgaRtp";
             var challengeClient = new ChallengeClient(teamSecret);
 
@@ -42,8 +46,8 @@ namespace ConsoleApp
             Console.WriteLine("----------------");
             Console.WriteLine();
 
-            const string type = "math";
-            /* 
+            const string type = "determinant";
+
             while (true)
             {
                 string round = challenge.Rounds[0].Id;
@@ -57,7 +61,7 @@ namespace ConsoleApp
                 Console.WriteLine("----------------");
                 Console.WriteLine();
 
-                string answer = SolveExpress.ParseAndGiveAnswer(newTask.Question) + "";
+                string answer = SolveDeterminant.GetAnswer(newTask.Question) + "";
 
                 Console.WriteLine($"Нажми ВВОД, чтобы ответить на полученную задачу самым правильным ответом: {answer}");
                 Console.ReadLine();
@@ -66,8 +70,8 @@ namespace ConsoleApp
                 Console.WriteLine($"  Новое задание, статус {updatedTask.Status}");
                 Console.WriteLine($"  Формулировка:  {updatedTask.UserHint}");
                 Console.WriteLine($"                 {updatedTask.Question}");
-                updatedTask.TeamAnswer = SolveExpress.ParseAndGiveAnswer(updatedTask.Question) + "";
-                Console.WriteLine($"  Ответ команды: {SolveExpress.ParseAndGiveAnswer(updatedTask.Question)}");
+                updatedTask.TeamAnswer = SolveDeterminant.GetAnswer(updatedTask.Question) + "";
+                Console.WriteLine($"  Ответ команды: {SolveDeterminant.GetAnswer(updatedTask.Question)}");
                 Console.WriteLine();
                 if (updatedTask.Status == TaskStatus.Success)
                     Console.WriteLine($"Ура! Ответ угадан!");
@@ -76,7 +80,7 @@ namespace ConsoleApp
                 Console.WriteLine();
 
             }
-            */
+
             Console.WriteLine("----------------");
             Console.WriteLine();
 
