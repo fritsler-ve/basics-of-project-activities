@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ConsoleApplication1
 {
-    internal class Program
+    internal class SolvePolynom
     {
-        public static string SolvePolynom(List<double> Parameters)
+        public static string SolvePolynomExp(List<double> Parameters)
         {
             double left = -1;
             double right = 1;
@@ -84,11 +84,6 @@ namespace ConsoleApplication1
             }
 
             return result;
-        }
-        
-        public static void Main(string[] args) 
-        {
-            
         }
     }
 }

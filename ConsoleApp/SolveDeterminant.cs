@@ -1,8 +1,8 @@
 ﻿namespace ConsoleApp
 {
-    class SolvePolynoms
+    class SolveDeterminant
     {
-        public static double Parser(string input)
+        public static double SolveAndGiveAnswer(string input)
         {
             var rows = input.Split(@" \\ ");
             var arr = new double[3, 3];

@@ -5,14 +5,13 @@ namespace ConsoleApp
 {
     class SolveExpress
     {
-
         private static bool Priority(char input)
         {
             var prioritized = new List<char>() { '*', '/', '%' };
             return prioritized.Contains(input);
         }
 
-        public static string ParseAndGiveAnswer(string data)
+        public static string SolveAndGiveAnswer(string data)
         {
             var parsedData = new List<string>();
             var currentNumber = "";

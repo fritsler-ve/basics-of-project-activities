@@ -77,17 +77,9 @@ namespace ConsoleApp
 
         static void Main(string[] args)
         {
-            /*
-            var test = SolveDeterminant.GetAnswer("-3 & 10 & -4 // -17 & -10 & -4 // 2 & 9 & -7");
-
-            Console.WriteLine(test);
-            */
-            var test = Parser("1.6*x^2 + 4.3*x + 1.6");
-            Console.WriteLine(test);
-            /*
             const string teamSecret = "jSVy9hRtt7bpflchqLGSc3l0iEgaRtp";
-            var challengeClient = new ChallengeClient(teamSecret);
-
+            //var challengeClient = new ChallengeClient(teamSecret);
+            /* 
             const string challengeId = "projects-course";
             Console.WriteLine($"Нажми ВВОД, чтобы получить информацию о челлендже {challengeId}");
             Console.ReadLine();
@@ -100,8 +92,7 @@ namespace ConsoleApp
             Console.WriteLine($"Нажми ВВОД, чтобы получить список взятых командой задач");
             Console.ReadLine();
             var allTasks = challengeClient.GetAllTasksAsync().Result;
-            for (int i = 0; i < allTasks.Count; i++)
-                Console.WriteLine(allTasks[i].Question);
+            //for (int i = 0; i < allTasks.Count; i++)  Console.WriteLine(allTasks[i].Question);
 
             for (int i = 0; i < allTasks.Count; i++)
             {
@@ -118,7 +109,7 @@ namespace ConsoleApp
 
             while (true)
             {
-                string round = challenge.Rounds[0].Id;
+                string round = challenge.Rounds[1].Id;
                 Console.WriteLine($"Нажми ВВОД, чтобы получить задачу типа {type}");
                 //Console.ReadLine();
                 var newTask = challengeClient.AskNewTaskAsync(round, type).Result;
@@ -149,12 +140,12 @@ namespace ConsoleApp
                 Console.ReadLine();
 
             }
-            */
             Console.WriteLine("----------------");
             Console.WriteLine();
 
             Console.WriteLine($"Нажми ВВОД, чтобы завершить работу программы");
             Console.ReadLine();
+            */
         }
     }
 }
