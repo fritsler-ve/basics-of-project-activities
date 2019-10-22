@@ -6,35 +6,57 @@ namespace ConsoleApp
 {
     class InfxToPostfx
     {
-        private static Stack stack;
+        private static Stack<char> stack;
         private static string input;
         private static string output = "";
         public InfxToPostfx(string expression)
         {
             input = expression;
-            stack = new Stack(expression.Length);
+            stack = new Stack<char>();
         }
 
         public string GetPostfix()
         {
+            var num = "";
             for (var i = 0; i < input.Length; i++)
             {
                 var currentChar = input[i];
+
+                if (char.IsDigit(input[i]))
+                {
+                    num += currentChar;
+                    if (i == input.Length - 1)
+                        output += num;
+                    continue;
+                }
+
                 switch (currentChar)
                 {
                     case '+':
                     case '-':
+                        if (num != "")
+                            output += num + "|";
+                        num = "";
                         gotOper(currentChar, 1);
                         break;
                     case '*':
                     case '/':
                     case '%':
+                        if (num != "")
+                            output += num + "|";
+                        num = "";
                         gotOper(currentChar, 2);
                         break;
                     case '(':
+                        if (num != "")
+                            output += num + "|";
+                        num = "";
                         stack.Push(currentChar);
                         break;
                     case ')':
+                        if (num != "")
+                            output += num + "|";
+                        num = "";
                         GotParen(currentChar);
                         break;
                     default:
@@ -43,7 +65,7 @@ namespace ConsoleApp
                 }
             }
 
-            while (!stack.IsEmpty())
+            while (stack.Count != 0)
             {
                 output += stack.Pop();
             }
@@ -53,7 +75,7 @@ namespace ConsoleApp
 
         public static void gotOper(char opThis, int priority)
         {
-            while (!stack.IsEmpty())
+            while (stack.Count != 0)
             {
                 char opTop = stack.Pop();
                 if (opTop == '(')
@@ -84,7 +106,7 @@ namespace ConsoleApp
 
         public static void GotParen(char ch)
         {
-            while (!stack.IsEmpty())
+            while (stack.Count != 0)
             {
                 char chx = stack.Pop();
 
@@ -93,6 +115,6 @@ namespace ConsoleApp
                 else
                     output += chx;
             }
-        } 
+        }
     }
 }
