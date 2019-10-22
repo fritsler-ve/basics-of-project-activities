@@ -78,6 +78,18 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             const string teamSecret = "jSVy9hRtt7bpflchqLGSc3l0iEgaRtp";
+            var test = new InfxToPostfx("3*(4+6)");
+            Console.WriteLine(test.GetPostfix());
+            var stack = new Stack(5);
+            stack.Push('5');
+            stack.Push('3');
+            stack.Pop();
+            stack.Push('4');
+            while (!stack.IsEmpty())
+            {
+                Console.WriteLine(stack.Pop());
+            }
+
             //var challengeClient = new ChallengeClient(teamSecret);
             /* 
             const string challengeId = "projects-course";
