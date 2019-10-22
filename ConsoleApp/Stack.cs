@@ -6,18 +6,18 @@ namespace ConsoleApp
 {
     class Stack
     {
-        private static List<char> stackArray;
+        private static char[] stackArray;
         private static int top;
 
-        public Stack()
+
+        public Stack(int stackSize)
         {
-            stackArray = new List<char>();
+            stackArray = new char[stackSize];
             top = -1;
         }
         public void Push(char symbol)
         {
-            stackArray.Add(symbol);
-            ++top;
+            stackArray[++top] = symbol;
         }
 
         public char Pop()
