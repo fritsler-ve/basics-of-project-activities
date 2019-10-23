@@ -3,20 +3,20 @@ using System.Collections.Generic;
 
 namespace ConsoleApp
 {
-    class SolveExpress
+    class SolvePostfxExp
     {
         private string input;
-        private Stack<double> stack;
-        public SolveExpress(string expression)
+        private Stack<int> stack;
+        public SolvePostfxExp(string expression)
         {
             input = expression;
         }
 
         public double GetResult()
         {
-            stack = new Stack<double>();
+            stack = new Stack<int>();
             char ch;
-            double num1, num2, interAns;
+            int num1, num2, interAns;
             var num = "";
 
             for (var i = 0; i < input.Length; i++)
@@ -28,13 +28,13 @@ namespace ConsoleApp
                 else if (ch == '|')
                 {
                     if (num != "")
-                        stack.Push(double.Parse(num));
+                        stack.Push(int.Parse(num));
                     num = "";
                 }
                 else
                 {
                     if (num != "")
-                        stack.Push(double.Parse(num));
+                        stack.Push(int.Parse(num));
                     num = "";
                     num2 = stack.Pop();
                     num1 = stack.Pop();
@@ -48,7 +48,7 @@ namespace ConsoleApp
             return stack.Pop();
         }
 
-        private static double SolveTwo(double first, double second, char operation)
+        private static int SolveTwo(int first, int second, char operation)
         {
             if (operation == '+') return first + second;
             if (operation == '-') return first - second;
