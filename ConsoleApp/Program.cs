@@ -78,9 +78,8 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             const string teamSecret = "jSVy9hRtt7bpflchqLGSc3l0iEgaRtp";
-            var test = new InfxToPostfx("((8+8)-(3-12%11-3)+(1+11)-(12*3-0))+((12+3)+(6+8)-(4-9%7))+((13/3)%1)");
-            var solve = new SolvePostfxExp(test.GetPostfix());
-            Console.WriteLine(solve.GetResult());
+            //var test = new SolveExp("((8+8)-(3-12%11-3)+(1+11)-(12*3-0))+((12+3)+(6+8)-(4-9%7))+((13/3)%1)");
+            Console.WriteLine(SolveExpression.GetResult("2/3"));
 
             //var challengeClient = new ChallengeClient(teamSecret);
             /* 
