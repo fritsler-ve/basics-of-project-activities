@@ -38,6 +38,7 @@ namespace ConsoleApp
                     if (numStack.Count == 0)
                         return num2;
                     num1 = numStack.Pop();
+
                     if (!num1.Contains("i") && !num2.Contains("i"))
                     {
                         result = SolveTwo(int.Parse(num1), int.Parse(num2), ch) + "";
@@ -148,10 +149,8 @@ namespace ConsoleApp
                     operation = '+';
                 else
                     operation = '-';
-
                 var nums = num1.Split(operation);
                 nums[1] = operation + nums[1];
-
                 // If you plus or minus with complex combination
                 // e.g. (2+3i)-2i, (2+3i)-2
                 if (ch == '+' || ch == '-')
@@ -165,18 +164,31 @@ namespace ConsoleApp
                         if (nums[0].Contains("i"))
                         {
                             nums[0] = nums[0].Substring(0, nums[0].Length - 1);
-                            nums[0] = SolveTwo(int.Parse(nums[0]), int.Parse(num2), ch) + "i";
+                            nums[0] = SolveTwo(int.Parse(nums[0]), int.Parse(num2), ch) + "";
+                            if (int.Parse(nums[0]) > 0)
+                            {
+                                nums[0] = "+" + nums[0];
+                            }
+
                             if (nums[0] == "0i")
                                 nums[0] = "";
+                            nums[0] += "i";
                         }
 
                         // If second number in previous result is complex
                         if (nums[1].Contains("i"))
                         {
                             nums[1] = nums[1].Substring(0, nums[1].Length - 1);
-                            nums[1] = SolveTwo(int.Parse(nums[1]), int.Parse(num2), ch) + "i";
+                            nums[1] = SolveTwo(int.Parse(num2), int.Parse(nums[1]), ch) + "";
+
+                            if (int.Parse(nums[1]) > 0)
+                            {
+                                nums[1] = "+" + nums[1];
+                            }
+
                             if (nums[1] == "0i")
                                 nums[1] = "";
+                            nums[1] += "i";
                         }
 
                         result = nums[0] + nums[1];
@@ -185,12 +197,12 @@ namespace ConsoleApp
                     {
                         //If first number in previous result is usual
                         if (!nums[0].Contains("i"))
-                            nums[0] = SolveTwo(int.Parse(nums[0]), int.Parse(num2), ch) + "";
+                            nums[0] = SolveTwo(int.Parse(num2), int.Parse(nums[0]), ch) + "";
 
                         // If second number in previous result is usual
                         if (!nums[1].Contains("i"))
                         {
-                            nums[1] = SolveTwo(int.Parse(nums[1]), int.Parse(num2), ch) + "";
+                            nums[1] = SolveTwo(int.Parse(num2), int.Parse(nums[1]), ch) + "";
                             if (int.Parse(nums[1]) > 0)
                                 nums[1] = "+" + nums[1];
                         }
